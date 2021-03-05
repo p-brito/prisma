@@ -1,0 +1,12 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/MagicDb/.vs/MagicDb/v16
+/MagicDb/MagicDb.Core/obj
+/MagicDb/MagicDb.UnitTests/obj
+/MagicDb/.vs/MagicDb
+/MagicDb/MagicDb.Core/bin/Debug/net5.0
+/MagicDb/MagicDb.Core/MagicDb.Core.csproj.user
+/MagicDb/MagicDb.UnitTests/bin/Debug/net5.0
