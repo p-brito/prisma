@@ -4,7 +4,7 @@ MagicDb provides a fast and easy way to implement a NoSQL db provider in your pr
 
 ## Getting started
 
-- Install the package. 
+- Install the package
 
 - Register the service in your Startup.cs
 
