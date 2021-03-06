@@ -67,6 +67,21 @@ namespace MagicDb.Providers.UnitTests
 
         [Fact]
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1707:Identifiers should not contain underscores", Justification = "<Pending>")]
+        public async Task Should_ThrowException_On_Get_Entity()
+        {
+            IServiceProvider serviceProvider = BuildBrokenServiceProvider();
+
+            IMagicDbProvider<TestEntity> mongoDbProvider = serviceProvider.GetRequiredService<IMagicDbProvider<TestEntity>>();
+
+            Func<Task> action = () => mongoDbProvider.GetAsync(null);
+
+            // Assert
+
+            await action.Should().ThrowAsync<ArgumentNullException>().ConfigureAwait(false);
+        }
+
+        [Fact]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1707:Identifiers should not contain underscores", Justification = "<Pending>")]
         public async Task Should_Insert_Entity()
         {
             IServiceProvider serviceProvider = BuildServiceProvider();
@@ -103,6 +118,21 @@ namespace MagicDb.Providers.UnitTests
             // Assert
 
             await action.Should().ThrowAsync<MagicDbException>().ConfigureAwait(false);
+        }
+
+        [Fact]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1707:Identifiers should not contain underscores", Justification = "<Pending>")]
+        public async Task Should_ThrowException_On_Insert_Entity()
+        {
+            IServiceProvider serviceProvider = BuildBrokenServiceProvider();
+
+            IMagicDbProvider<TestEntity> mongoDbProvider = serviceProvider.GetRequiredService<IMagicDbProvider<TestEntity>>();
+
+            Func<Task> action = () => mongoDbProvider.InsertAsync(null);
+
+            // Assert
+
+            await action.Should().ThrowAsync<ArgumentNullException>().ConfigureAwait(false);
         }
 
 
@@ -150,6 +180,21 @@ namespace MagicDb.Providers.UnitTests
             await action.Should().ThrowAsync<MagicDbException>().ConfigureAwait(false);
         }
 
+        [Fact]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1707:Identifiers should not contain underscores", Justification = "<Pending>")]
+        public async Task Should_ThrowExcepion_On_Update_Entity()
+        {
+            IServiceProvider serviceProvider = BuildBrokenServiceProvider();
+
+            IMagicDbProvider<TestEntity> mongoDbProvider = serviceProvider.GetRequiredService<IMagicDbProvider<TestEntity>>();
+
+            Func<Task> action = () => mongoDbProvider.UpdateAsync(null);
+
+            // Assert
+
+            await action.Should().ThrowAsync<ArgumentNullException>().ConfigureAwait(false);
+        }
+
 
         [Fact]
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1707:Identifiers should not contain underscores", Justification = "<Pending>")]
@@ -175,6 +220,22 @@ namespace MagicDb.Providers.UnitTests
             bool deleted = await mongoDbProvider.DeleteAsync("myEntity123").ConfigureAwait(false);
 
             deleted.Should().BeFalse();
+        }
+
+
+        [Fact]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1707:Identifiers should not contain underscores", Justification = "<Pending>")]
+        public async Task Should_ThrowException_On_Delete_Entity()
+        {
+            IServiceProvider serviceProvider = BuildBrokenServiceProvider();
+
+            IMagicDbProvider<TestEntity> mongoDbProvider = serviceProvider.GetRequiredService<IMagicDbProvider<TestEntity>>();
+
+            Func<Task> action = () => mongoDbProvider.DeleteAsync(null);
+
+            // Assert
+
+            await action.Should().ThrowAsync<ArgumentNullException>().ConfigureAwait(false);
         }
 
         #endregion

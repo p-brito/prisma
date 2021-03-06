@@ -61,6 +61,33 @@ namespace MagicDb.Core.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Argument cannot be empty..
+        /// </summary>
+        internal static string RES_Exception_ArgCannotBeEmpty {
+            get {
+                return ResourceManager.GetString("RES_Exception_ArgCannotBeEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Argument cannot be null..
+        /// </summary>
+        internal static string RES_Exception_ArgCannotBeNull {
+            get {
+                return ResourceManager.GetString("RES_Exception_ArgCannotBeNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Argument cannot be null or empty..
+        /// </summary>
+        internal static string RES_Exception_ArgCannotBeNullOrEmpty {
+            get {
+                return ResourceManager.GetString("RES_Exception_ArgCannotBeNullOrEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to An error occurred while trying to delete the specified entity..
         /// </summary>
         internal static string RES_Exception_Delete {
