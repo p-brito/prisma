@@ -86,17 +86,17 @@ namespace MagicDb.Core.Providers
         #region Public Methods
 
         /// <inheritdoc/>
-        public async Task<bool> DeleteAsync(TEntity entity, CancellationToken cancellationToken = default)
+        public async Task<bool> DeleteAsync(string id, CancellationToken cancellationToken = default)
         {
             try
             {
-                DeleteResult result = await this.Collection.DeleteOneAsync(clientSessionHandle, f => f.Id == entity.Id, cancellationToken: cancellationToken).ConfigureAwait(false);
+                DeleteResult result = await this.Collection.DeleteOneAsync(f => f.Id == id, cancellationToken: cancellationToken).ConfigureAwait(false);
 
                 return result.IsAcknowledged;
             }
-            catch
+            catch (MongoException ex)
             {
-                throw new MagicDbException(MagicDbError.ErrorDelete, Properties.Resources.RES_Exception_Delete);
+                throw new MagicDbException(MagicDbError.ErrorDelete, Properties.Resources.RES_Exception_Delete, ex);
             }
         }
 
@@ -107,11 +107,11 @@ namespace MagicDb.Core.Providers
             {
                 IAsyncCursor<TEntity> entity = await this.Collection.FindAsync(e => e.Id == id, cancellationToken: cancellationToken).ConfigureAwait(false);
 
-                return entity.First(cancellationToken);
+                return entity.FirstOrDefault(cancellationToken);
             }
-            catch
+            catch (MongoException ex)
             {
-                throw new MagicDbException(MagicDbError.ErrorGet, Properties.Resources.RES_Exception_Get);
+                throw new MagicDbException(MagicDbError.ErrorGet, Properties.Resources.RES_Exception_Get, ex);
             }
            
         }
@@ -125,9 +125,9 @@ namespace MagicDb.Core.Providers
 
                 return entity;
             }
-            catch
+            catch(MongoException ex)
             {
-                throw new MagicDbException(MagicDbError.ErrorInsert, Properties.Resources.RES_Exception_Insert);
+                throw new MagicDbException(MagicDbError.ErrorInsert, Properties.Resources.RES_Exception_Insert, ex);
             }
         }
 
@@ -152,9 +152,9 @@ namespace MagicDb.Core.Providers
                 return entity;
 
             }
-            catch
+            catch(MongoException ex)
             {
-                throw new MagicDbException(MagicDbError.ErrorUpdate, Properties.Resources.RES_Exception_Update);
+                throw new MagicDbException(MagicDbError.ErrorUpdate, Properties.Resources.RES_Exception_Update, ex);
             }
         }
 
