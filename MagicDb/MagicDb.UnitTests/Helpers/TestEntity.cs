@@ -6,7 +6,7 @@ namespace MagicDb.UnitTests.Helpers
     /// Defines the test entity.
     /// </summary>
     /// <seealso cref="MagicDb.Core.Entities.BaseEntity" />
-    internal class TestEntity : BaseEntity
+    public sealed class TestEntity : BaseEntity
     {
         /// <summary>
         /// Gets or sets the name.

@@ -3,6 +3,7 @@ using MagicDb.Core.Extensions;
 using MagicDb.Core.Providers;
 
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 
 using MongoDB.Driver;
 
@@ -58,12 +59,12 @@ namespace MagicDb.Core.DependencyInjection
 
         private static IServiceCollection AddMongoDbProvider(this IServiceCollection services, MagicDbOptions configuration)
         {
-            services.AddSingleton<IMongoClient>(c =>
+            services.TryAddSingleton<IMongoClient>(c =>
             {
                 return new MongoClient(configuration.ConnectionString);
             });
 
-            services.AddTransient(typeof(IMagicDbProvider<>), typeof(MongoDbProvider<>));
+            services.TryAddTransient(typeof(IMagicDbProvider<>), typeof(MongoDbProvider<>));
 
             return services;
         }

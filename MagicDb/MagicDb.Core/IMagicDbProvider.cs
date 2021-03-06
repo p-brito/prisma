@@ -36,10 +36,10 @@ namespace MagicDb.Core
         /// <summary>
         /// Deletes the entity asynchronous.
         /// </summary>
-        /// <param name="entity">The entity.</param>
+        /// <param name="id">The identifier.</param>
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>The entity.</returns>
-        Task<bool> DeleteAsync(TEntity entity, CancellationToken cancellationToken = default);
+        Task<bool> DeleteAsync(string id, CancellationToken cancellationToken = default);
 
     }
 }
