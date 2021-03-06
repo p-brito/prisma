@@ -1,6 +1,6 @@
 ﻿using MagicDb.Core.Entities;
 using MagicDb.Core.Exceptions;
-
+using MagicDb.Core.Utils;
 using Microsoft.Extensions.DependencyInjection;
 
 using MongoDB.Driver;
@@ -88,6 +88,8 @@ namespace MagicDb.Core.Providers
         /// <inheritdoc/>
         public async Task<bool> DeleteAsync(string id, CancellationToken cancellationToken = default)
         {
+            Validator.NotNullOrEmpty(() => id, id);
+
             try
             {
                 DeleteResult result = await this.Collection.DeleteOneAsync(f => f.Id == id, cancellationToken: cancellationToken).ConfigureAwait(false);
@@ -103,6 +105,8 @@ namespace MagicDb.Core.Providers
         /// <inheritdoc/>
         public async Task<TEntity> GetAsync(string id, CancellationToken cancellationToken = default)
         {
+            Validator.NotNullOrEmpty(() => id, id);
+
             try
             {
                 IAsyncCursor<TEntity> entity = await this.Collection.FindAsync(e => e.Id == id, cancellationToken: cancellationToken).ConfigureAwait(false);
@@ -119,6 +123,8 @@ namespace MagicDb.Core.Providers
         /// <inheritdoc/>
         public async Task<TEntity> InsertAsync(TEntity entity, CancellationToken cancellationToken = default)
         {
+            Validator.NotNull(() => entity, entity);
+
             try
             {
                 await this.Collection.InsertOneAsync(clientSessionHandle, entity, cancellationToken: cancellationToken).ConfigureAwait(false);
@@ -134,6 +140,8 @@ namespace MagicDb.Core.Providers
         /// <inheritdoc/>
         public async Task<TEntity> UpdateAsync(TEntity entity, CancellationToken cancellationToken = default)
         {
+            Validator.NotNull(() => entity, entity);
+
             try
             {
                 Expression<Func<TEntity, string>> func = f => f.Id;
