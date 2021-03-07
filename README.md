@@ -1,7 +1,6 @@
 # MagicDb
 [![Build](https://github.com/p-brito/MagicDb/workflows/MagicDb-Build/badge.svg)](https://github.com/p-brito/MagicDb/actions?query=workflow%3A%22MagicDb+-+build%22)
 [![Nuget](https://img.shields.io/nuget/v/MagicDb)](https://www.nuget.org/packages/MagicDb/)
-[![Nuget Downloads](https://img.shields.io/nuget/dt/MagicDb)](https://www.nuget.org/stats/packages/MagicDb?groupby=Version)
 [![Apache License 2.0](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/p-brito/MagicDb/blob/main/license)
 
 MagicDb provides a fast and easy way to implement a NoSQL db provider in your project.
@@ -58,7 +57,7 @@ The MagicDbProvider has the following methods:
 
 - First and if you do not have an account create one [here](https://www.mongodb.com/cloud/atlas/signup).
 
-- Create you organization and after that your project.
+- Create your organization and after that your project.
 
 - Create a cluster.
 ![Create a cluster](assets/mongodb_createCluster.gif)
