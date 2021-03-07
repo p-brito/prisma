@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MagicDb.Core", "MagicDb.Core\MagicDb.Core.csproj", "{35005022-0A8B-483B-8FE1-F18BB0EDB538}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MagicDb.UnitTests", "MagicDb.UnitTests\MagicDb.UnitTests.csproj", "{C6B9239D-75DB-487F-AFCF-E493E58C0FBE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MagicDb.UnitTests", "MagicDb.UnitTests\MagicDb.UnitTests.csproj", "{C6B9239D-75DB-487F-AFCF-E493E58C0FBE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

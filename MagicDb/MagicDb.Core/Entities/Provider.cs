@@ -3,7 +3,7 @@
     /// <summary>
     /// Defines the provider type.
     /// </summary>
-    internal enum Provider
+    public enum Provider
     {
         Unspecified,
         MongoDb,
