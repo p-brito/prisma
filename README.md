@@ -23,7 +23,7 @@ MagicDb provides a fast and easy way to implement a NoSQL db provider in your pr
     "MagicDbOptions":{
         "Provider":"",
         "ConnectionString":"",
-        "Database":""
+        "DatabaseName":""
     }
 }
 ```
@@ -63,7 +63,7 @@ To configure the MagicDb to use the MongoDB provider you just need to configure 
     "MagicDbOptions":{
         "Provider":"MongoDB",
         "ConnectionString":"mongodb+srv://admin:mypass123@myddbcluster.c900q.mongodb.net/magicboxDb?retryWrites=true&w=majority",
-        "Database":"MyDatabaseName"
+        "DatabaseName":"MyDatabaseName"
     }
 }
 ```
