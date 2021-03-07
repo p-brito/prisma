@@ -4,15 +4,15 @@ MagicDb provides a fast and easy way to implement a NoSQL db provider in your pr
 
 ## Getting started
 
-- Install the package
+- Install the package.
 
-- Register the service in your Startup.cs
+- Register the service in your Startup.cs.
 
 ```cshsarp
   services.AddMagicDb();
 ```
 
-- Add the `MagicDbOptions` to appsetting.json and register tem.
+- Add the `MagicDbOptions` to appsetting.json and register these.
 
 ```json
 {
@@ -36,10 +36,10 @@ IMagicDbProvider<TEntity> DbProvider = this.serviceProvider.GetRequiredService<I
 ```
 
 The MagicDbProvider has the following methods:
-- GetAsync
-- InsertAsync
-- UpdateAsync
-- DeleteAsync
+- GetAsync;
+- InsertAsync;
+- UpdateAsync;
+- DeleteAsync.
 
 > Notice, that all the entities that are used need to inherit from `BaseEntity`.
 
