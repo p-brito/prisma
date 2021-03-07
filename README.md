@@ -1,9 +1,8 @@
+# MagicDb
 [![Build](https://github.com/p-brito/MagicDb/workflows/MagicDb-Build/badge.svg)](https://github.com/p-brito/MagicDb/actions?query=workflow%3A%22MagicDb+-+build%22)
 [![Nuget](https://img.shields.io/nuget/v/MagicDb)](https://www.nuget.org/packages/MagicDb/)
 [![Nuget Downloads](https://img.shields.io/nuget/dt/MagicDb)](https://www.nuget.org/stats/packages/MagicDb?groupby=Version)
 [![Apache License 2.0](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/p-brito/MagicDb/blob/main/license)
-
-# MagicDb
 
 MagicDb provides a fast and easy way to implement a NoSQL db provider in your project.
 
