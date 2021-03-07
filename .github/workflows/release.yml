@@ -1,4 +1,4 @@
-name: MagicDb-Release
+name: publish to nuget
 
 on:
   workflow_run:
