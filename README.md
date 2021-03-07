@@ -8,7 +8,7 @@ MagicDb provides a fast and easy way to implement a NoSQL db provider in your pr
 
 ## Getting started
 
-- Install the package.
+- Install the [MagicDb package](https://www.nuget.org/packages/MagicDb/) in your project.
 
 - Register the service in your Startup.cs.
 
@@ -40,10 +40,10 @@ IMagicDbProvider<TEntity> DbProvider = this.serviceProvider.GetRequiredService<I
 ```
 
 The MagicDbProvider has the following methods:
-- GetAsync;
-- InsertAsync;
-- UpdateAsync;
-- DeleteAsync.
+- GetAsync
+- InsertAsync
+- UpdateAsync
+- DeleteAsync
 
 > Notice, that all the entities that are used need to inherit from `BaseEntity`.
 
@@ -56,17 +56,28 @@ The MagicDbProvider has the following methods:
 
 ## MongoDB
 
-To configure the MagicDb to use the MongoDB provider you just need to configure it as follows:
+- First and if you do not have an account create one [here](https://www.mongodb.com/cloud/atlas/signup).
 
-```json
-{
-    "MagicDbOptions":{
-        "Provider":"MongoDB",
-        "ConnectionString":"mongodb+srv://admin:mypass123@myddbcluster.c900q.mongodb.net/magicboxDb?retryWrites=true&w=majority",
-        "DatabaseName":"MyDatabaseName"
+- Create you organization and after that your project.
+
+- Create a cluster.
+![Create a cluster](assets/mongodb_createCluster.gif)
+
+- Configure your cluster, defining if this is accessible to anyone or not, and adding a database user.
+![Configure a cluster](assets/mongodb_configureCluster.gif)
+
+- Now, follow these [steps](#Getting-started).
+
+- Add the Magic DbOptions to your appsettings.json file, consider the following example.
+    ```json
+    {
+        "MagicDbOptions":{
+            "Provider":"MongoDB",
+            "ConnectionString":"mongodb+srv://admin:mypass123@myddbcluster.c900q.mongodb.net/MyDatabaseName?retryWrites=true&w=majority",
+            "DatabaseName":"MyDatabaseName"
+        }
     }
-}
-```
+    ```
 
 ## Firebase
 
