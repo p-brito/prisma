@@ -10,7 +10,7 @@
         /// <summary>
         /// Gets or sets the provider type.
         /// </summary>
-        public Provider Provider { get; set; }
+        public DbProvider Provider { get; set; }
 
         /// <summary>
         /// Gets or sets the connection string.
