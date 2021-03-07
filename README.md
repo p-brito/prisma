@@ -1,4 +1,8 @@
 # MagicDb
+[![NetLicensing C# Client - CI](https://github.com/p-brito/MagicDb/workflows/MagicDb-Build/badge.svg)](https://github.com/p-brito/MagicDb/actions?query=workflow%3A%22MagicDb+-+build%22)
+[![Nuget](https://img.shields.io/nuget/v/NetLicensingClient-csharp)](https://www.nuget.org/packages/NetLicensingClient-csharp/)
+[![Nuget Downloads](https://img.shields.io/nuget/dt/NetLicensingClient-csharp)](https://www.nuget.org/stats/packages/NetLicensingClient-csharp?groupby=Version)
+[![Apache License 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://github.com/p-brito/MagicDb/main/LICENSE)
 
 MagicDb provides a fast and easy way to implement a NoSQL db provider in your project.
 
