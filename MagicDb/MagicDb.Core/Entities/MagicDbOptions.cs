@@ -3,7 +3,7 @@
     /// <summary>
     /// Defines the MagicDb options, where you can configure which provider you want to use.
     /// </summary>
-    internal sealed class MagicDbOptions
+    public sealed class MagicDbOptions
     {
         #region Public Properties
 
