@@ -2,7 +2,7 @@ name: publish to nuget
 
 on:
   workflow_run:
-    workflows: ["build"]
+    workflows: ["build and test"]
     branches: [ main ]
     types:
       - completed
