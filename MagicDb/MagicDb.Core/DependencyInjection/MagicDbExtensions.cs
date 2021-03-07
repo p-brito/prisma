@@ -43,7 +43,7 @@ namespace MagicDb.Core.DependencyInjection
 
             switch (configuration.Provider)
             {
-                case Provider.MongoDb:
+                case DbProvider.MongoDb:
                     services.AddMongoDbProvider(configuration);
                     break;
                 default:
