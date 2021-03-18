@@ -77,8 +77,8 @@ The MagicDbProvider has the following methods:
     ```
 
 ## DynamoDB
-- First and you haven't, create an account [here.](aws.amazon.com/free)
-- Follow the steps to configure your account, [see this.](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/SettingUp.DynamoWebService.html#SettingUp.DynamoWebService.GetCredentials).
+- First and you if haven't, create an account [here.](https://aws.amazon.com/free)
+- Follow these steps to configure your account, [see this.](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/SettingUp.DynamoWebService.html#SettingUp.DynamoWebService.GetCredentials)
 - Create a new group.
 ![Create a group](assets/aws_create_group.gif)
 - Create a user, add it to the group that you have created, save the `Access Key ID` and the `Secret access key` you will need this later on.
