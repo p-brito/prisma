@@ -17,11 +17,6 @@
         /// </summary>
         public string ConnectionString { get; set; }
 
-        /// <summary>
-        /// Gets or sets the name of the database.
-        /// </summary>
-        public string DatabaseName { get; set; }
-
         #endregion
 
         #region Constructor

@@ -88,7 +88,16 @@ namespace MagicDb.Core.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An error occurred while trying to delete the specified entity..
+        ///   Looks up a localized string similar to The {0} does not exist in the provided configuration..
+        /// </summary>
+        internal static string RES_Exception_ConfigString_MissingKey {
+            get {
+                return ResourceManager.GetString("RES_Exception_ConfigString_MissingKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An error occurred while trying to delete  the entity the id {0}..
         /// </summary>
         internal static string RES_Exception_Delete {
             get {
@@ -97,7 +106,7 @@ namespace MagicDb.Core.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An error occurred while trying to get the specified entity..
+        ///   Looks up a localized string similar to An error occurred while trying to get the the entity the id {0}..
         /// </summary>
         internal static string RES_Exception_Get {
             get {
@@ -106,7 +115,16 @@ namespace MagicDb.Core.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An error occurred while trying to insert the specified entity..
+        ///   Looks up a localized string similar to An error occurred while trying to initialize the {0} provider..
+        /// </summary>
+        internal static string RES_Exception_Initializing_Provider {
+            get {
+                return ResourceManager.GetString("RES_Exception_Initializing_Provider", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An error occurred while trying to insert the  the entity the id {0}..
         /// </summary>
         internal static string RES_Exception_Insert {
             get {
@@ -115,11 +133,20 @@ namespace MagicDb.Core.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An error occurred while trying to update the specified entity..
+        ///   Looks up a localized string similar to An error occurred while trying to update the entity the id {0}..
         /// </summary>
         internal static string RES_Exception_Update {
             get {
                 return ResourceManager.GetString("RES_Exception_Update", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An error occurred while trying to update the specified entity. The entity with the id {0} does not exist..
+        /// </summary>
+        internal static string RES_Exception_Update_EntityDoesNotExist {
+            get {
+                return ResourceManager.GetString("RES_Exception_Update_EntityDoesNotExist", resourceCulture);
             }
         }
     }

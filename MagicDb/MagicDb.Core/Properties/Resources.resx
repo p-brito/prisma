@@ -126,16 +126,25 @@
   <data name="RES_Exception_ArgCannotBeNullOrEmpty" xml:space="preserve">
     <value>Argument cannot be null or empty.</value>
   </data>
+  <data name="RES_Exception_ConfigString_MissingKey" xml:space="preserve">
+    <value>The {0} does not exist in the provided configuration.</value>
+  </data>
   <data name="RES_Exception_Delete" xml:space="preserve">
-    <value>An error occurred while trying to delete the specified entity.</value>
+    <value>An error occurred while trying to delete  the entity the id {0}.</value>
   </data>
   <data name="RES_Exception_Get" xml:space="preserve">
-    <value>An error occurred while trying to get the specified entity.</value>
+    <value>An error occurred while trying to get the the entity the id {0}.</value>
+  </data>
+  <data name="RES_Exception_Initializing_Provider" xml:space="preserve">
+    <value>An error occurred while trying to initialize the {0} provider.</value>
   </data>
   <data name="RES_Exception_Insert" xml:space="preserve">
-    <value>An error occurred while trying to insert the specified entity.</value>
+    <value>An error occurred while trying to insert the  the entity the id {0}.</value>
   </data>
   <data name="RES_Exception_Update" xml:space="preserve">
-    <value>An error occurred while trying to update the specified entity.</value>
+    <value>An error occurred while trying to update the entity the id {0}.</value>
+  </data>
+  <data name="RES_Exception_Update_EntityDoesNotExist" xml:space="preserve">
+    <value>An error occurred while trying to update the specified entity. The entity with the id {0} does not exist.</value>
   </data>
 </root>

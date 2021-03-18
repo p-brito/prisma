@@ -22,7 +22,6 @@ MagicDb provides a fast and easy way to implement a NoSQL db provider in your pr
     "MagicDbOptions":{
         "Provider":"",
         "ConnectionString":"",
-        "DatabaseName":""
     }
 }
 ```
@@ -72,17 +71,29 @@ The MagicDbProvider has the following methods:
     {
         "MagicDbOptions":{
             "Provider":"MongoDB",
-            "ConnectionString":"mongodb+srv://admin:mypass123@myddbcluster.c900q.mongodb.net/MyDatabaseName?retryWrites=true&w=majority",
-            "DatabaseName":"MyDatabaseName"
+            "ConnectionString":"mongodb+srv://admin:mypass123@myddbcluster.c900q.mongodb.net/MyDatabaseName?retryWrites=true&w=majority"
+        }
+    }
+    ```
+
+## DynamoDB
+- First and you haven't, create an account [here.](aws.amazon.com/free)
+- Follow the steps to configure your account, [see this.](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/SettingUp.DynamoWebService.html#SettingUp.DynamoWebService.GetCredentials).
+- Create a new group.
+![Create a group](assets/aws_create_group.gif)
+- Create a user, add it to the group that you have created, save the `Access Key ID` and the `Secret access key` you will need this later on.
+- Now, follow these [steps](#Getting-started).
+- Add the Magic DbOptions to your appsettings.json file, consider the following example.
+    ```json
+    {
+        "MagicDbOptions": {
+            "Provider": "DynamoDb",
+            "ConnectionString": "accesskey=AKIATEJJHIIBH5Z6XUMA;secretkey=9VB7jBKQvdyNrVX5d2t+cD4UTwnW4Nc2f98vigHa;region=eu-west-1"
         }
     }
     ```
 
 ## Firebase
-
-> [Under Development]
-
-## DynamoDB
 > [Under Development]
 
 ## CosmosDB

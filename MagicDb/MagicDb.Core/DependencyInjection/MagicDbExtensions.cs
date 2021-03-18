@@ -1,14 +1,15 @@
-﻿using MagicDb.Core.Entities;
+﻿using Amazon.DynamoDBv2;
+using MagicDb.Core.Entities;
 using MagicDb.Core.Extensions;
 using MagicDb.Core.Providers;
-
+using MagicDb.Core.Utils;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 
 using MongoDB.Driver;
 
 namespace MagicDb.Core.DependencyInjection
-{  
+{
     /// <summary>
     /// Defines the MagicDb extensions class.
     /// </summary>
@@ -25,7 +26,7 @@ namespace MagicDb.Core.DependencyInjection
         {
             // Validate
 
-            if(services == null)
+            if (services == null)
             {
                 return null;
             }
@@ -36,6 +37,7 @@ namespace MagicDb.Core.DependencyInjection
                 .AddOptions()
                 .AddOptionsSnapshot<MagicDbOptions>();
 
+            services.AddLogging();
 
             MagicDbOptions configuration = services.BuildServiceProvider().GetRequiredService<MagicDbOptions>();
 
@@ -46,6 +48,10 @@ namespace MagicDb.Core.DependencyInjection
                 case DbProvider.MongoDb:
                     services.AddMongoDbProvider(configuration);
                     break;
+                case DbProvider.DynamoDb:
+                    services.AddDynamoDbProvider(configuration);
+                    break;
+
                 default:
                     break;
             }
@@ -53,7 +59,7 @@ namespace MagicDb.Core.DependencyInjection
             return services;
         }
 
-        #endregion
+        #endregion Public Methods
 
         #region Private Methods
 
@@ -69,6 +75,24 @@ namespace MagicDb.Core.DependencyInjection
             return services;
         }
 
-        #endregion
+        private static IServiceCollection AddDynamoDbProvider(this IServiceCollection services, MagicDbOptions configuration)
+        {
+            ConfigString dynamoDbConfig = new(configuration.ConnectionString);
+
+            services.TryAddSingleton<IAmazonDynamoDB>(c =>
+            {
+                return new AmazonDynamoDBClient(
+                    new Amazon.Runtime.BasicAWSCredentials(
+                        dynamoDbConfig.GetValueOrDefault("accesskey"),
+                        dynamoDbConfig.GetValueOrDefault("secretkey")),
+                    Amazon.RegionEndpoint.GetBySystemName(dynamoDbConfig.GetValueOrDefault("region")));
+            });
+
+            services.TryAddTransient(typeof(IMagicDbProvider<>), typeof(DynamoDbProvider<>));
+
+            return services;
+        }
+
+        #endregion Private Methods
     }
 }

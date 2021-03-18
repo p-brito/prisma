@@ -10,3 +10,5 @@
 /MagicDb/MagicDb.Core/bin/Debug/net5.0
 /MagicDb/MagicDb.Core/MagicDb.Core.csproj.user
 /MagicDb/MagicDb.UnitTests/bin/Debug/net5.0
+/MagicDb/MagicDb.Demo/bin/Debug/net5.0
+/MagicDb/MagicDb.Demo/obj
