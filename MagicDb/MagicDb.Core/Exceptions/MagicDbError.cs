@@ -25,6 +25,11 @@
         /// <summary>
         /// An error occurred while trying to update the specified entity.
         /// </summary>
-        ErrorUpdate
+        ErrorUpdate,
+
+        /// <summary>
+        /// An error occurred while trying to initialize the provider.
+        /// </summary>
+        ErrorInitializeProvider
     }
 }

@@ -70,8 +70,7 @@ namespace MagicDb.UnitTests.Extensions
             Dictionary<string, string> settings = new()
             {
                 {"MagicDbOptions:Provider", "MongoDb"},
-                {"MagicDbOptions:ConnectionString", "mongodb+srv://magicboxadmin:Fe!Ru!eQZa!TNg6@magicboxcluster.c900q.mongodb.net/MagicDb?retryWrites=true&w=majority" },
-                {"MagicDbOptions:DatabaseName", "MagicDb" }
+                {"MagicDbOptions:ConnectionString", "mongodb+srv://magicboxadmin:Fe!Ru!eQZa!TNg6@magicboxcluster.c900q.mongodb.net/MagicDb?retryWrites=true&w=majority" }
             };
 
             IConfiguration configuration = new ConfigurationBuilder()

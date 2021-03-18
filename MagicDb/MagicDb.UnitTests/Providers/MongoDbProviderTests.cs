@@ -32,9 +32,9 @@ namespace MagicDb.Providers.UnitTests
         {
             IServiceProvider serviceProvider = BuildServiceProvider();
 
-            IMagicDbProvider<TestEntity> mongoDbProvider = serviceProvider.GetRequiredService<IMagicDbProvider<TestEntity>>();
+            IMagicDbProvider<TestEntity> provider = serviceProvider.GetRequiredService<IMagicDbProvider<TestEntity>>();
 
-            Assert.NotNull(mongoDbProvider);
+            Assert.NotNull(provider);
         }
 
         [Fact]
@@ -43,9 +43,9 @@ namespace MagicDb.Providers.UnitTests
         {
             IServiceProvider serviceProvider = BuildServiceProvider();
 
-            IMagicDbProvider<TestEntity> mongoDbProvider = serviceProvider.GetRequiredService<IMagicDbProvider<TestEntity>>();
+            IMagicDbProvider<TestEntity> provider = serviceProvider.GetRequiredService<IMagicDbProvider<TestEntity>>();
 
-            TestEntity entity = await mongoDbProvider.GetAsync("myEntity123").ConfigureAwait(false);
+            TestEntity entity = await provider.GetAsync("myEntity123").ConfigureAwait(false);
 
             entity.Should().NotBeNull();
 
@@ -58,9 +58,9 @@ namespace MagicDb.Providers.UnitTests
         {
             IServiceProvider serviceProvider = BuildBrokenServiceProvider();
 
-            IMagicDbProvider<TestEntity> mongoDbProvider = serviceProvider.GetRequiredService<IMagicDbProvider<TestEntity>>();
+            IMagicDbProvider<TestEntity> provider = serviceProvider.GetRequiredService<IMagicDbProvider<TestEntity>>();
 
-            TestEntity entity = await mongoDbProvider.GetAsync("dontExist").ConfigureAwait(false);
+            TestEntity entity = await provider.GetAsync("dontExist").ConfigureAwait(false);
 
             entity.Should().BeNull();
         }
@@ -71,9 +71,9 @@ namespace MagicDb.Providers.UnitTests
         {
             IServiceProvider serviceProvider = BuildBrokenServiceProvider();
 
-            IMagicDbProvider<TestEntity> mongoDbProvider = serviceProvider.GetRequiredService<IMagicDbProvider<TestEntity>>();
+            IMagicDbProvider<TestEntity> provider = serviceProvider.GetRequiredService<IMagicDbProvider<TestEntity>>();
 
-            Func<Task> action = () => mongoDbProvider.GetAsync(null);
+            Func<Task> action = () => provider.GetAsync(null);
 
             // Assert
 
@@ -86,14 +86,14 @@ namespace MagicDb.Providers.UnitTests
         {
             IServiceProvider serviceProvider = BuildServiceProvider();
 
-            IMagicDbProvider<TestEntity> mongoDbProvider = serviceProvider.GetRequiredService<IMagicDbProvider<TestEntity>>();
+            IMagicDbProvider<TestEntity> provider = serviceProvider.GetRequiredService<IMagicDbProvider<TestEntity>>();
 
             TestEntity testEntity = new()
             {
                 Name = "InsertedEntity"
             };
 
-            TestEntity entity = await mongoDbProvider.InsertAsync(testEntity).ConfigureAwait(false);
+            TestEntity entity = await provider.InsertAsync(testEntity).ConfigureAwait(false);
 
             entity.Should().NotBeNull();
 
@@ -106,14 +106,14 @@ namespace MagicDb.Providers.UnitTests
         {
             IServiceProvider serviceProvider = BuildBrokenServiceProvider();
 
-            IMagicDbProvider<TestEntity> mongoDbProvider = serviceProvider.GetRequiredService<IMagicDbProvider<TestEntity>>();
+            IMagicDbProvider<TestEntity> provider = serviceProvider.GetRequiredService<IMagicDbProvider<TestEntity>>();
 
             TestEntity testEntity = new()
             {
                 Name = "InsertedEntity"
             };
 
-            Func<Task> action = () => mongoDbProvider.InsertAsync(testEntity);
+            Func<Task> action = () => provider.InsertAsync(testEntity);
 
             // Assert
 
@@ -126,9 +126,9 @@ namespace MagicDb.Providers.UnitTests
         {
             IServiceProvider serviceProvider = BuildBrokenServiceProvider();
 
-            IMagicDbProvider<TestEntity> mongoDbProvider = serviceProvider.GetRequiredService<IMagicDbProvider<TestEntity>>();
+            IMagicDbProvider<TestEntity> provider = serviceProvider.GetRequiredService<IMagicDbProvider<TestEntity>>();
 
-            Func<Task> action = () => mongoDbProvider.InsertAsync(null);
+            Func<Task> action = () => provider.InsertAsync(null);
 
             // Assert
 
@@ -142,7 +142,7 @@ namespace MagicDb.Providers.UnitTests
         {
             IServiceProvider serviceProvider = BuildServiceProvider();
 
-            IMagicDbProvider<TestEntity> mongoDbProvider = serviceProvider.GetRequiredService<IMagicDbProvider<TestEntity>>();
+            IMagicDbProvider<TestEntity> provider = serviceProvider.GetRequiredService<IMagicDbProvider<TestEntity>>();
 
             TestEntity testEntity = new()
             {
@@ -151,7 +151,7 @@ namespace MagicDb.Providers.UnitTests
                 Name = "Test entity",
             };
 
-            TestEntity entity = await mongoDbProvider.UpdateAsync(testEntity).ConfigureAwait(false);
+            TestEntity entity = await provider.UpdateAsync(testEntity).ConfigureAwait(false);
 
             entity.Should().NotBeNull();
 
@@ -164,7 +164,7 @@ namespace MagicDb.Providers.UnitTests
         {
             IServiceProvider serviceProvider = BuildBrokenServiceProvider();
 
-            IMagicDbProvider<TestEntity> mongoDbProvider = serviceProvider.GetRequiredService<IMagicDbProvider<TestEntity>>();
+            IMagicDbProvider<TestEntity> provider = serviceProvider.GetRequiredService<IMagicDbProvider<TestEntity>>();
 
             TestEntity testEntity = new()
             {
@@ -173,7 +173,7 @@ namespace MagicDb.Providers.UnitTests
                 Name = "Test entity",
             };
 
-            Func<Task> action = () => mongoDbProvider.UpdateAsync(testEntity);
+            Func<Task> action = () => provider.UpdateAsync(testEntity);
 
             // Assert
 
@@ -186,9 +186,9 @@ namespace MagicDb.Providers.UnitTests
         {
             IServiceProvider serviceProvider = BuildBrokenServiceProvider();
 
-            IMagicDbProvider<TestEntity> mongoDbProvider = serviceProvider.GetRequiredService<IMagicDbProvider<TestEntity>>();
+            IMagicDbProvider<TestEntity> provider = serviceProvider.GetRequiredService<IMagicDbProvider<TestEntity>>();
 
-            Func<Task> action = () => mongoDbProvider.UpdateAsync(null);
+            Func<Task> action = () => provider.UpdateAsync(null);
 
             // Assert
 
@@ -202,9 +202,9 @@ namespace MagicDb.Providers.UnitTests
         {
             IServiceProvider serviceProvider = BuildServiceProvider();
 
-            IMagicDbProvider<TestEntity> mongoDbProvider = serviceProvider.GetRequiredService<IMagicDbProvider<TestEntity>>();
+            IMagicDbProvider<TestEntity> provider = serviceProvider.GetRequiredService<IMagicDbProvider<TestEntity>>();
 
-            bool deleted = await mongoDbProvider.DeleteAsync("myEntity123").ConfigureAwait(false);
+            bool deleted = await provider.DeleteAsync("myEntity123").ConfigureAwait(false);
 
             deleted.Should().BeTrue();
         }
@@ -215,9 +215,9 @@ namespace MagicDb.Providers.UnitTests
         {
             IServiceProvider serviceProvider = BuildBrokenServiceProvider();
 
-            IMagicDbProvider<TestEntity> mongoDbProvider = serviceProvider.GetRequiredService<IMagicDbProvider<TestEntity>>();
+            IMagicDbProvider<TestEntity> provider = serviceProvider.GetRequiredService<IMagicDbProvider<TestEntity>>();
 
-            bool deleted = await mongoDbProvider.DeleteAsync("myEntity123").ConfigureAwait(false);
+            bool deleted = await provider.DeleteAsync("myEntity123").ConfigureAwait(false);
 
             deleted.Should().BeFalse();
         }
@@ -229,9 +229,9 @@ namespace MagicDb.Providers.UnitTests
         {
             IServiceProvider serviceProvider = BuildBrokenServiceProvider();
 
-            IMagicDbProvider<TestEntity> mongoDbProvider = serviceProvider.GetRequiredService<IMagicDbProvider<TestEntity>>();
+            IMagicDbProvider<TestEntity> provider = serviceProvider.GetRequiredService<IMagicDbProvider<TestEntity>>();
 
-            Func<Task> action = () => mongoDbProvider.DeleteAsync(null);
+            Func<Task> action = () => provider.DeleteAsync(null);
 
             // Assert
 
@@ -252,11 +252,12 @@ namespace MagicDb.Providers.UnitTests
                     .AddOptions()
                     .AddOptionsSnapshot<MagicDbOptions>();
 
+            services.AddLogging();
+
             Dictionary<string, string> settings = new()
             {
                 { "MagicDbOptions:Provider", "MongoDb" },
-                { "MagicDbOptions:ConnectionString", "mongodb+srv://admin:mypass123@myddbcluster.c900q.mongodb.net/magicboxDb?retryWrites=true&w=majority" },
-                { "MagicDbOptions:DatabaseName", "Default" }
+                { "MagicDbOptions:ConnectionString", "mongodb+srv://admin:mypass123@myddbcluster.c900q.mongodb.net/MyDatabase?retryWrites=true&w=majority" },
             };
 
             IConfiguration configuration = new ConfigurationBuilder().AddInMemoryCollection(settings).Build();
@@ -288,11 +289,12 @@ namespace MagicDb.Providers.UnitTests
                     .AddOptions()
                     .AddOptionsSnapshot<MagicDbOptions>();
 
+            services.AddLogging();
+
             Dictionary<string, string> settings = new()
             {
                 { "MagicDbOptions:Provider", "MongoDb" },
-                { "MagicDbOptions:ConnectionString", "mongodb+srv://admin:mypass123@myddbcluster.c900q.mongodb.net/magicboxDb?retryWrites=true&w=majority" },
-                { "MagicDbOptions:DatabaseName", "Default" }
+                { "MagicDbOptions:ConnectionString", "mongodb+srv://admin:mypass123@myddbcluster.c900q.mongodb.net/MyDatabase?retryWrites=true&w=majority" },
             };
 
             IConfiguration configuration = new ConfigurationBuilder().AddInMemoryCollection(settings).Build();
@@ -328,7 +330,7 @@ namespace MagicDb.Providers.UnitTests
 
             IList<string> expectedCollection = new List<string>()
             {
-                "TestEntitys"
+                "TestEntityCollection"
             };
 
             IList<TestEntity> expectedEntities = new List<TestEntity>()
@@ -423,7 +425,7 @@ namespace MagicDb.Providers.UnitTests
 
             IList<string> expectedCollection = new List<string>()
             {
-                "TestEntitys"
+                "TestEntityCollection"
             };
 
             IList<TestEntity> expectedEntities = new List<TestEntity>();
