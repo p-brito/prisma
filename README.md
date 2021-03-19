@@ -1,4 +1,4 @@
-# Prisma
+# :small_red_triangle: Prisma
 [![Build](https://github.com/p-brito/prisma/workflows/build%20and%20test/badge.svg)](https://github.com/p-brito/prisma/actions/workflows/build.yml?query=workflow%3A%22build+-+and+-+test%22)
 [![Nuget](https://img.shields.io/nuget/v/Prisma)](https://www.nuget.org/packages/prisma/)
 [![Apache License 2.0](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/p-brito/Prisma/blob/main/license)
