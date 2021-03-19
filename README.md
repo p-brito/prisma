@@ -1,32 +1,32 @@
-# MagicDb
-[![Build](https://github.com/p-brito/MagicDb/workflows/MagicDb-Build/badge.svg)](https://github.com/p-brito/MagicDb/actions?query=workflow%3A%22MagicDb+-+build%22)
-[![Nuget](https://img.shields.io/nuget/v/MagicDb)](https://www.nuget.org/packages/MagicDb/)
-[![Apache License 2.0](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/p-brito/MagicDb/blob/main/license)
+# Prisma
+[![Build](https://github.com/p-brito/prisma/workflows/Prisma-Build/badge.svg)](https://github.com/p-brito/Prisma/actions?query=workflow%3A%22Prisma+-+build%22)
+[![Nuget](https://img.shields.io/nuget/v/Prisma)](https://www.nuget.org/packages/prisma/)
+[![Apache License 2.0](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/p-brito/Prisma/blob/main/license)
 
-MagicDb provides a fast and easy way to implement a NoSQL db provider in your project.
+Prisma provides a fast and easy way to implement a NoSQL db provider in your project.
 
 ## Getting started
 
-- Install the [MagicDb package](https://www.nuget.org/packages/MagicDb/) in your project.
+- Install the [Prisma package](https://www.nuget.org/packages/Prisma/) in your project.
 
 - Register the service in your Startup.cs.
 
 ```cshsarp
-  services.AddMagicDb();
+  services.AddPrisma();
 ```
 
-- Add the `MagicDbOptions` to appsetting.json and register these.
+- Add the `PrismaOptions` to appsetting.json and register these.
 
 ```json
 {
-    "MagicDbOptions":{
+    "PrismaOptions":{
         "Provider":"",
         "ConnectionString":"",
     }
 }
 ```
 ```csharp
- services.Configure<MagicDbOptions>(configuration.GetSection(nameof(MagicDbOptions)));
+ services.Configure<PrismaOptions>(configuration.GetSection(nameof(PrismaOptions)));
 ```
 
 > Notice, that these options will change accordingly to the provider that you are using. Read the documentation on how to configure your provider below.
@@ -34,10 +34,10 @@ MagicDb provides a fast and easy way to implement a NoSQL db provider in your pr
 - Get the provider
 
 ```csharp
-IMagicDbProvider<TEntity> DbProvider = this.serviceProvider.GetRequiredService<IMagicDbProvider<TEntity>>();
+IPrismaProvider<TEntity> DbProvider = this.serviceProvider.GetRequiredService<IPrismaProvider<TEntity>>();
 ```
 
-The MagicDbProvider has the following methods:
+The PrismaProvider has the following methods:
 - GetAsync
 - InsertAsync
 - UpdateAsync
@@ -68,7 +68,7 @@ The MagicDbProvider has the following methods:
 - Add the Magic DbOptions to your appsettings.json file, consider the following example.
     ```json
     {
-        "MagicDbOptions":{
+        "PrismaOptions":{
             "Provider":"MongoDB",
             "ConnectionString":"mongodb+srv://admin:mypass123@myddbcluster.c900q.mongodb.net/MyDatabaseName?retryWrites=true&w=majority"
         }
@@ -85,7 +85,7 @@ The MagicDbProvider has the following methods:
 - Add the Magic DbOptions to your appsettings.json file, consider the following example.
     ```json
     {
-        "MagicDbOptions": {
+        "PrismaOptions": {
             "Provider": "DynamoDb",
             "ConnectionString": "accesskey=AKIATEJJHIIBH5Z6XUMA;secretkey=9VB7jBKQvdyNrVX5d2t+cD4UTwnW4Nc2f98vigHa;region=eu-west-1"
         }

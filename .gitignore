@@ -12,3 +12,8 @@
 /MagicDb/MagicDb.UnitTests/bin/Debug/net5.0
 /MagicDb/MagicDb.Demo/bin/Debug/net5.0
 /MagicDb/MagicDb.Demo/obj
+/MagicDb/.vs/Prisma
+/MagicDb/Prisma.Core/bin/Debug/net5.0
+/MagicDb/Prisma.Core/obj
+/MagicDb/Prisma.UnitTests/bin/Debug/net5.0
+/MagicDb/Prisma.UnitTests/obj
