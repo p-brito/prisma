@@ -1,5 +1,5 @@
 # Prisma
-[![Build](https://github.com/p-brito/prisma/workflows/Prisma-Build/badge.svg)](https://github.com/p-brito/Prisma/actions?query=workflow%3A%22Prisma+-+build%22)
+[![Build](https://github.com/p-brito/prisma/workflows/Prisma-Build/badge.svg)](https://github.com/p-brito/prisma/actions/workflows/build.yml?query=workflow%3A%22build+-+and+-+test%22)
 [![Nuget](https://img.shields.io/nuget/v/Prisma)](https://www.nuget.org/packages/prisma/)
 [![Apache License 2.0](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/p-brito/Prisma/blob/main/license)
 
