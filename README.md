@@ -47,7 +47,6 @@ The MagicDbProvider has the following methods:
 
 ## Providers
 * [MongoDB](#MongoDB)
-* [Firebase](#Firebase)
 * [DynamoDB](#DynamoDB)
 * [CosmosDB](#CosmosDB)
 
@@ -77,7 +76,7 @@ The MagicDbProvider has the following methods:
     ```
 
 ## DynamoDB
-- First and you if haven't, create an account [here.](https://aws.amazon.com/free)
+- First and if you haven't, create an account [here.](https://aws.amazon.com/free)
 - Follow these steps to configure your account, [see this.](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/SettingUp.DynamoWebService.html#SettingUp.DynamoWebService.GetCredentials)
 - Create a new group.
 ![Create a group](assets/aws_create_group.gif)
@@ -92,9 +91,5 @@ The MagicDbProvider has the following methods:
         }
     }
     ```
-
-## Firebase
-> [Under Development]
-
 ## CosmosDB
 > [Under Development]
