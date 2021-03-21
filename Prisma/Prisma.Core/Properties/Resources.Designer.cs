@@ -124,6 +124,15 @@ namespace Prisma.Core.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to An error occurred while trying to initialize the {0}..
+        /// </summary>
+        internal static string RES_Exception_Initializing_Resource {
+            get {
+                return ResourceManager.GetString("RES_Exception_Initializing_Resource", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to An error occurred while trying to insert the  the entity the id {0}..
         /// </summary>
         internal static string RES_Exception_Insert {

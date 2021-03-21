@@ -15,7 +15,11 @@
     <UserSecretsId>50577860-c1c4-45d8-a455-58d0001c0fdc</UserSecretsId>
   </PropertyGroup>
   <ItemGroup>
+    <Content Remove="C:\Users\PedroB\.nuget\packages\microsoft.azure.cosmos\3.17.1\contentFiles\any\netstandard2.0\ThirdPartyNotice.txt" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="AWSSDK.DynamoDBv2" Version="3.5.4.35" />
+    <PackageReference Include="Microsoft.Azure.Cosmos" Version="3.17.1" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="5.0.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="5.0.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.1" />

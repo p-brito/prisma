@@ -1,12 +1,16 @@
 ﻿using Amazon.DynamoDBv2;
+using Microsoft.Azure.Cosmos;
+
 using Prisma.Core.Entities;
 using Prisma.Core.Extensions;
 using Prisma.Core.Providers;
 using Prisma.Core.Utils;
+
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 
 using MongoDB.Driver;
+using Microsoft.Azure.Documents;
 
 namespace Prisma.Core.DependencyInjection
 {
@@ -51,7 +55,9 @@ namespace Prisma.Core.DependencyInjection
                 case DbProvider.DynamoDb:
                     services.AddDynamoDbProvider(configuration);
                     break;
-
+                case DbProvider.CosmosDb:
+                    services.AddCosmosDbProvider(configuration);
+                    break;
                 default:
                     break;
             }
@@ -89,6 +95,21 @@ namespace Prisma.Core.DependencyInjection
             });
 
             services.TryAddTransient(typeof(IPrismaProvider<>), typeof(DynamoDbProvider<>));
+
+            return services;
+        }
+
+        private static IServiceCollection AddCosmosDbProvider(this IServiceCollection services, PrismaOptions configuration)
+        {
+
+            ConfigString cosmosDbConfig = new(configuration.ConnectionString);
+
+            services.TryAddSingleton<CosmosClient>(c =>
+            {
+                return new CosmosClient($"{cosmosDbConfig.GetValueOrDefault("AccountEndpoint")};{cosmosDbConfig.GetValueOrDefault("AccountKey")}");
+            });
+
+            services.TryAddTransient(typeof(IPrismaProvider<>), typeof(CosmosDbProvider<>));
 
             return services;
         }
