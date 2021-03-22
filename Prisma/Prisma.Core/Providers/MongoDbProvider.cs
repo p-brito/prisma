@@ -2,8 +2,10 @@
 using Prisma.Core.Exceptions;
 using Prisma.Core.Extensions;
 using Prisma.Core.Utils;
+
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+
 using MongoDB.Driver;
 
 using System;

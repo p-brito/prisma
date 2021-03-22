@@ -34,7 +34,7 @@ Prisma provides a fast and easy way to implement a NoSQL db provider in your pro
 - Get the provider
 
 ```csharp
-IPrismaProvider<TEntity> DbProvider = this.serviceProvider.GetRequiredService<IPrismaProvider<TEntity>>();
+IPrismaProvider<TEntity> myProvider = this.serviceProvider.GetRequiredService<IPrismaProvider<TEntity>>();
 ```
 
 The PrismaProvider has the following methods:
@@ -65,24 +65,30 @@ The PrismaProvider has the following methods:
 
 - Now, follow these [steps](#Getting-started).
 
-- Add the Magic DbOptions to your appsettings.json file, consider the following example.
+- Add the prisma options to your appsettings.json file, consider the following example.
     ```json
     {
         "PrismaOptions":{
-            "Provider":"MongoDB",
+            "Provider":"MongoDb",
             "ConnectionString":"mongodb+srv://admin:mypass123@myddbcluster.c900q.mongodb.net/MyDatabaseName?retryWrites=true&w=majority"
         }
     }
     ```
 
 ## DynamoDB
+
 - First and if you haven't, create an account [here.](https://aws.amazon.com/free)
+
 - Follow these steps to configure your account, [see this.](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/SettingUp.DynamoWebService.html#SettingUp.DynamoWebService.GetCredentials)
+
 - Create a new group.
 ![Create a group](assets/aws_create_group.gif)
+
 - Create a user, add it to the group that you have created, save the `Access Key ID` and the `Secret access key` you will need this later on.
+
 - Now, follow these [steps](#Getting-started).
-- Add the Magic DbOptions to your appsettings.json file, consider the following example.
+
+- Add the prisma options to your appsettings.json file, consider the following example.
     ```json
     {
         "PrismaOptions": {
@@ -92,4 +98,31 @@ The PrismaProvider has the following methods:
     }
     ```
 ## CosmosDB
-> [Under Development]
+
+- First and if you haven't, create an account [here.](https://azure.microsoft.com/en-us/)
+
+- Search for `Azure Cosmos DB` and create an account.
+![Create a cosmosdb account](assets/create_cosmosdb.gif)
+
+- Click on `keys` and get your `PRIMARY CONNECTION STRING`.
+![Get primary connection string](assets/cosmosdb_get_keys.png)
+
+- Now, follow these [steps](#Getting-started).
+
+- Add the prisma options to your appsettings.json file, consider the following example.
+
+    ```json
+    {
+        "PrismaOptions":{
+            "Provider":"CosmosDb",
+            "ConnectionString":"AccountEndpoint=MyEndpoint;AccountKey=myAccountKey;DatabaseKey=myDatabaseKey;"
+        }
+    }
+    ```
+> Notice, that you can define the throughput in your connection string by using the following parameter `AutoscaleThroughput=value` or `ManualThroughput=value`. By default the value of the throughput is set to 1000 RU/s.
+
+The `AutoScaleThroughput`, provisions the RU/s based on the workload between the range of 10% of Max RU/s to Max RU’s. Be aware that the cost of autoscale is 50% more than the standard throughput.
+
+The `ManualThroughput`, use this to define a custom value for your throughput.
+
+To know more about this consider this [article.](https://medium.com/@ravisonga/understanding-azure-cosmos-db-autoscale-30935aa35477)
