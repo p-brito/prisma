@@ -9,10 +9,8 @@ using Microsoft.Azure.Cosmos;
 
 using System;
 using System.Linq;
-using System.Linq.Expressions;
 using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.Azure.Documents;
 using System.Net;
 
 namespace Prisma.Core.Providers
@@ -119,7 +117,7 @@ namespace Prisma.Core.Providers
                     return true;
                 }
 
-                throw new PrismaException(PrismaError.ErrorDelete, Properties.Resources.RES_Exception_Delete.Format(id));
+                return false;
             }
             catch (CosmosException ex)
             {
@@ -140,13 +138,13 @@ namespace Prisma.Core.Providers
 
                 string queryString = $"SELECT * FROM {this.container} WHERE Id = '{id}'";
 
-                FeedIterator<TEntity> queryable = this.Container.GetItemQueryIterator<TEntity>(queryString);
+                FeedIterator<TEntity> queryable = this.Container.GetItemQueryIterator<TEntity>(queryString, null, null);
 
                 if (queryable.HasMoreResults)
                 {
                     FeedResponse<TEntity> queryResponse = await queryable.ReadNextAsync(cancellationToken).ConfigureAwait(false);
 
-                    return queryResponse.First();
+                    return queryResponse.Resource.First();
                 }
 
                 return null;
@@ -242,7 +240,9 @@ namespace Prisma.Core.Providers
 
         private async Task CreateDatabaseIfNotExistsAsync()
         {
-            DatabaseResponse response = await this.Client.CreateDatabaseIfNotExistsAsync(this.Configuration.GetValueOrDefault("DatabaseKey")).ConfigureAwait(false);
+            ThroughputProperties properties = this.BuildThroughputProperties();
+
+            DatabaseResponse response = await this.Client.CreateDatabaseIfNotExistsAsync(this.Configuration.GetValueOrDefault("DatabaseKey"), properties).ConfigureAwait(false);
 
             if ((response.StatusCode != HttpStatusCode.OK && response.StatusCode != HttpStatusCode.Created) || response.Database == null)
             {
@@ -256,12 +256,53 @@ namespace Prisma.Core.Providers
 
             ContainerProperties properties = new(id: this.container, partitionKeyPath: "/id");
 
-            ContainerResponse response = await this.Database.CreateContainerIfNotExistsAsync(properties).ConfigureAwait(false);
+            ThroughputProperties throughputProperties = this.BuildThroughputProperties();
+
+            ContainerResponse response = await this.Database.CreateContainerIfNotExistsAsync(properties, throughputProperties).ConfigureAwait(false);
 
             if ((response.StatusCode != HttpStatusCode.OK && response.StatusCode != HttpStatusCode.Created) || response.Container == null)
             {
                 throw new PrismaException(PrismaError.ErrorInitializeProvider, Properties.Resources.RES_Exception_Initializing_Resource.Format(nameof(Container)));
             }
+        }
+
+        private ThroughputProperties BuildThroughputProperties()
+        {
+            string throughput;
+
+            ThroughputProperties properties = null;
+
+            if (!string.IsNullOrEmpty(this.Configuration.GetValueOrDefault("AutoscaleThroughput")))
+            {
+                throughput = this.Configuration.GetValueOrDefault("AutoscaleThroughput");
+
+                bool valid = int.TryParse(throughput, out int autoscaleThroughput);
+
+                if (valid)
+                {
+                    properties = ThroughputProperties.CreateAutoscaleThroughput(autoscaleThroughput);
+
+                    return properties;
+                }
+            }
+            
+            if (!string.IsNullOrEmpty(this.Configuration.GetValueOrDefault("ManualThroughput")))
+            {
+                throughput = this.Configuration.GetValueOrDefault("ManualThroughput");
+
+                bool valid = int.TryParse(throughput, out int manualThroughput);
+
+                if (valid)
+                {
+                    properties = ThroughputProperties.CreateManualThroughput(manualThroughput);
+
+                    return properties;
+                }
+            }
+
+            properties = ThroughputProperties.CreateAutoscaleThroughput(1000);
+
+            return properties;
         }
 
         #endregion
