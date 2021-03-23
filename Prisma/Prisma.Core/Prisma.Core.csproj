@@ -7,7 +7,7 @@
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <PackageId>Prisma</PackageId>
     <Authors>Pedro Brito</Authors>
-    <Version>1.1.0</Version>
+    <Version>1.1.1</Version>
     <PackageDescription>Provides a fast and easy way to implement a NoSQL db provider in your project.</PackageDescription>
     <RepositoryUrl>
       https://github.com/p-brito/prisma

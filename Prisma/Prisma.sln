@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Prima.Core", "Prisma.Core\Prisma.Core.csproj", "{35005022-0A8B-483B-8FE1-F18BB0EDB538}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Prisma.Core", "Prisma.Core\Prisma.Core.csproj", "{35005022-0A8B-483B-8FE1-F18BB0EDB538}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Prisma.UnitTests", "Prisma.UnitTests\Prisma.UnitTests.csproj", "{C6B9239D-75DB-487F-AFCF-E493E58C0FBE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Prisma.Demo", "Prisma.Demo\Prisma.Demo.csproj", "{6CDBD51A-AA10-4D91-BDB7-A5C13A0F3C99}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{C6B9239D-75DB-487F-AFCF-E493E58C0FBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C6B9239D-75DB-487F-AFCF-E493E58C0FBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C6B9239D-75DB-487F-AFCF-E493E58C0FBE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6CDBD51A-AA10-4D91-BDB7-A5C13A0F3C99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6CDBD51A-AA10-4D91-BDB7-A5C13A0F3C99}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6CDBD51A-AA10-4D91-BDB7-A5C13A0F3C99}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6CDBD51A-AA10-4D91-BDB7-A5C13A0F3C99}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -107,12 +107,12 @@ namespace Prisma.Core.Providers
 
             try
             {
-                this.Logger.LogInformation($"CosmosDb provider is trying to delete an entity with the id {id} from the collection {this.container}.");
+                this.Logger.LogInformation($"CosmosDb provider is trying to delete an entity with the id {id} from the container {this.container}.");
 
 
                 ItemResponse<TEntity> response = await this.Container.DeleteItemAsync<TEntity>(id, new PartitionKey(id), cancellationToken: cancellationToken).ConfigureAwait(false);
                 
-                if((response.StatusCode == HttpStatusCode.OK || response.StatusCode == HttpStatusCode.NoContent) && response.Resource != null)
+                if((response.StatusCode == HttpStatusCode.OK || response.StatusCode == HttpStatusCode.NoContent))
                 {
                     return true;
                 }
@@ -134,9 +134,9 @@ namespace Prisma.Core.Providers
 
             try
             {
-                this.Logger.LogInformation($"CosmosDb provider is trying to get an entity with the id {id} from the collection {this.container}.");
+                this.Logger.LogInformation($"CosmosDb provider is trying to get an entity with the id {id} from the container {this.container}.");
 
-                string queryString = $"SELECT * FROM {this.container} WHERE Id = '{id}'";
+                string queryString = $"SELECT * FROM {this.container} AS c WHERE c.id = '{id}'";
 
                 FeedIterator<TEntity> queryable = this.Container.GetItemQueryIterator<TEntity>(queryString, null, null);
 
@@ -166,12 +166,12 @@ namespace Prisma.Core.Providers
 
             try
             {
-                this.Logger.LogInformation($"CosmosDb provider is trying to insert a new entity with the id {entity.Id} into the Collection {this.container}.");
+                this.Logger.LogInformation($"CosmosDb provider is trying to insert a new entity with the id {entity.Id} into the container {this.container}.");
 
                
                 ItemResponse<TEntity> response = await this.Container.CreateItemAsync(entity, new PartitionKey(entity.Id), cancellationToken: cancellationToken).ConfigureAwait(false);
 
-                if ((response.StatusCode == HttpStatusCode.OK || response.StatusCode == HttpStatusCode.NoContent) && response.Resource != null)
+                if ((response.StatusCode == HttpStatusCode.OK || response.StatusCode == HttpStatusCode.Created) && response.Resource != null)
                 {
                     return response.Resource;
                 }
@@ -193,13 +193,13 @@ namespace Prisma.Core.Providers
 
             try
             {
-                this.Logger.LogInformation($"CosmosDb provider is trying to update an entity with the id {entity.Id} from the collection {this.container}.");
+                this.Logger.LogInformation($"CosmosDb provider is trying to update an entity with the id {entity.Id} from the container {this.container}.");
 
                 entity.UpdatedOn = DateTime.UtcNow;
 
                 ItemResponse<TEntity> response = await this.Container.UpsertItemAsync(entity, new PartitionKey(entity.Id), cancellationToken: cancellationToken).ConfigureAwait(false);
 
-                if ((response.StatusCode == HttpStatusCode.OK || response.StatusCode == HttpStatusCode.NoContent) && response.Resource != null)
+                if ((response.StatusCode == HttpStatusCode.OK || response.StatusCode == HttpStatusCode.Created) && response.Resource != null)
                 {
                     return response.Resource;
                 }
@@ -240,7 +240,7 @@ namespace Prisma.Core.Providers
 
         private async Task CreateDatabaseIfNotExistsAsync()
         {
-            ThroughputProperties properties = this.BuildThroughputProperties();
+            ThroughputProperties properties = this.GetThroughputProperties();
 
             DatabaseResponse response = await this.Client.CreateDatabaseIfNotExistsAsync(this.Configuration.GetValueOrDefault("DatabaseKey"), properties).ConfigureAwait(false);
 
@@ -254,9 +254,9 @@ namespace Prisma.Core.Providers
         {
             this.container = $"{typeof(TEntity).Name}Container";
 
-            ContainerProperties properties = new(id: this.container, partitionKeyPath: "/id");
+            ContainerProperties properties = new(id: this.container, partitionKeyPath: this.GetPartitionKey());
 
-            ThroughputProperties throughputProperties = this.BuildThroughputProperties();
+            ThroughputProperties throughputProperties = this.GetThroughputProperties();
 
             ContainerResponse response = await this.Database.CreateContainerIfNotExistsAsync(properties, throughputProperties).ConfigureAwait(false);
 
@@ -266,7 +266,7 @@ namespace Prisma.Core.Providers
             }
         }
 
-        private ThroughputProperties BuildThroughputProperties()
+        private ThroughputProperties GetThroughputProperties()
         {
             string throughput;
 
@@ -300,9 +300,21 @@ namespace Prisma.Core.Providers
                 }
             }
 
-            properties = ThroughputProperties.CreateAutoscaleThroughput(1000);
+            properties = ThroughputProperties.CreateAutoscaleThroughput(4000);
 
             return properties;
+        }
+
+        private string GetPartitionKey()
+        {
+            string partitionKey = this.Configuration.GetValueOrDefault("PartitionKey");
+
+            if (!string.IsNullOrEmpty(partitionKey))
+            {
+                return $"/{partitionKey.ToLowerInvariant()}";
+            }
+
+            return "/id";
         }
 
         #endregion

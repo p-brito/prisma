@@ -3,22 +3,10 @@
 ################################################################################
 
 /.vs
-/MagicDb/.vs/MagicDb/v16
-/MagicDb/MagicDb.Core/obj
-/MagicDb/MagicDb.UnitTests/obj
-/MagicDb/.vs/MagicDb
-/MagicDb/MagicDb.Core/bin/Debug/net5.0
-/MagicDb/MagicDb.Core/MagicDb.Core.csproj.user
-/MagicDb/MagicDb.UnitTests/bin/Debug/net5.0
-/MagicDb/MagicDb.Demo/bin/Debug/net5.0
-/MagicDb/MagicDb.Demo/obj
-/MagicDb/.vs/Prisma
-/MagicDb/Prisma.Core/bin/Debug/net5.0
-/MagicDb/Prisma.Core/obj
-/MagicDb/Prisma.UnitTests/bin/Debug/net5.0
-/MagicDb/Prisma.UnitTests/obj
 /Prisma/.vs/Prisma
 /Prisma/Prisma.Core/bin/Debug/net5.0
 /Prisma/Prisma.Core/obj
 /Prisma/Prisma.UnitTests/bin/Debug/net5.0
 /Prisma/Prisma.UnitTests/obj
+/Prisma/Prisma.Demo/obj
+/Prisma/Prisma.Demo/bin/Debug/net5.0
