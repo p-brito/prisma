@@ -13,13 +13,7 @@ namespace Prisma.Core.Utils
         /// <summary>
         /// The pattern to parse a configuration string.
         /// </summary>
-        /// <remarks>
-        /// This regular expression matches multiple balanced constructs to retrieve properly-nested configuration strings
-        /// within curly braces delimiters. For more information check the references below:
-        /// https://weblogs.asp.net/whaggard/377025
-        /// https://docs.microsoft.com/en-us/dotnet/standard/base-types/grouping-constructs-in-regular-expressions.
-        /// </remarks>
-        private const string Pattern = @"([^;]*)=[\s]*{((?>{(?<open>)|[^{}]+|}(?<-open>))*(?(open)(?!)))}|([^;]*)=([^;]*)";
+        private const string Pattern = @"(([^==;]*)=([^;]*))|([^;]*)=([^;]*)";
 
         #endregion
 
@@ -232,8 +226,8 @@ namespace Prisma.Core.Utils
             {
                 if (item.Success)
                 {
-                    string itemKey = item.Groups[3].Value.Trim();
-                    string itemValue = item.Groups[4].Value.Trim();
+                    string itemKey = item.Groups[2].Value.Trim();
+                    string itemValue = item.Groups[3].Value.Trim();
 
                     if (string.IsNullOrEmpty(itemKey))
                     {

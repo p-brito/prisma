@@ -119,10 +119,12 @@ The PrismaProvider has the following methods:
         }
     }
     ```
-> Notice, that you can define the throughput in your connection string by using the following parameter `AutoscaleThroughput=value` or `ManualThroughput=value`. By default the value of the throughput is set to 1000 RU/s.
+> Notice, that you can define the throughput in your connection string by adding the following parameter `AutoscaleThroughput=value` or `ManualThroughput=value` in the connection string. By default the value of the throughput is set to 4000 RU/s.
 
 The `AutoScaleThroughput`, provisions the RU/s based on the workload between the range of 10% of Max RU/s to Max RU’s. Be aware that the cost of autoscale is 50% more than the standard throughput.
 
 The `ManualThroughput`, use this to define a custom value for your throughput.
 
 To know more about this consider this [article.](https://medium.com/@ravisonga/understanding-azure-cosmos-db-autoscale-30935aa35477)
+
+> Also, you can define the partition key by adding the following parameter `PartitionKey=Name` in the connection string. By default the partition key is the entity id.

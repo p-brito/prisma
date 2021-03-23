@@ -105,7 +105,14 @@ namespace Prisma.Core.DependencyInjection
 
             services.TryAddSingleton<CosmosClient>(c =>
             {
-                return new CosmosClient($"{cosmosDbConfig.GetValueOrDefault("AccountEndpoint")};{cosmosDbConfig.GetValueOrDefault("AccountKey")}");
+                return new CosmosClient($"AccountEndpoint={cosmosDbConfig.GetValueOrDefault("AccountEndpoint")};AccountKey={cosmosDbConfig.GetValueOrDefault("AccountKey")}",
+                    new CosmosClientOptions
+                    {
+                        SerializerOptions = new CosmosSerializationOptions()
+                        {
+                            PropertyNamingPolicy = CosmosPropertyNamingPolicy.CamelCase
+                        }
+                    });
             });
 
             services.TryAddTransient(typeof(IPrismaProvider<>), typeof(CosmosDbProvider<>));
